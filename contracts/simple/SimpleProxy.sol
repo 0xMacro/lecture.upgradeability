@@ -30,12 +30,27 @@ contract SimpleProxy {
     /// gets called to use the msg.sender, msg.value, and msg.data from the Proxy's context but
     /// use the code from the Logic contract
     function delegateTheCall() internal {
-        (bool success, bytes memory data) = address(logicContract).delegatecall(msg.data);
-
-        if (!success) {
-            revert(string(data));
+        assembly {
+            let contractLogic := sload(0)
+            let ptr := mload(0x40)
+            calldatacopy(ptr, 0x0, calldatasize())
+            let success := delegatecall(
+                gas(),
+                contractLogic,
+                ptr,
+                calldatasize(),
+                0,
+                0
+            )
+            let retSz := returndatasize()
+            returndatacopy(ptr, 0, retSz)
+            switch success
+            case 0 {
+                revert(ptr, retSz)
+            }
+            default {
+                return(ptr, retSz)
+            }
         }
-
-        // in this simple example, we don't handle the return data; it is lost :(
     }
 }
