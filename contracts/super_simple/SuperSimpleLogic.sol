@@ -4,10 +4,10 @@ pragma solidity ^0.8.9;
 import "hardhat/console.sol";
 
 contract SuperSimpleLogic {
-    uint256 public bloop;
+    uint256 public slot0;
     uint256 public someVariable;
 
-    function doSomething(uint256 someArg) payable external {
+    function setVariable(uint256 someArg) external payable {
         console.log("Logic msg.data:");
         console.logBytes(msg.data);
         console.log("Logic msg.value: %s", msg.value);
@@ -15,7 +15,7 @@ contract SuperSimpleLogic {
         someVariable = someArg;
     }
 
-    function getThisAddress() view external returns (address) {
+    function getThisAddress() external view returns (address) {
         return address(this);
     }
 }

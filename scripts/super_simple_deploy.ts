@@ -3,6 +3,7 @@ import { SuperSimpleLogic } from "../typechain-types"
 
 async function main() {
   const [deployer] = await ethers.getSigners()
+
   const SuperSimpleLogic = await ethers.getContractFactory("SuperSimpleLogic");
   const logic = await SuperSimpleLogic.deploy()
   await logic.deployed()
@@ -16,8 +17,9 @@ async function main() {
   console.log(`\nLogic:      ${logic.address}`)
   console.log(`Proxy:      ${proxy.address}`)
   console.log(`EOA sender: ${deployer.address}`)
-  console.log("\ncalling \"SuperSimpleLogic.doSomething(42)...\"")
-  await proxyAsLogic.doSomething(42, { value: ethers.utils.parseEther("1") });
+  console.log("\ncalling \"SuperSimpleLogic.setVariable(42)...\"")
+
+  await proxyAsLogic.setVariable(42, { value: ethers.utils.parseEther("1") });
 }
 
 // We recommend this pattern to be able to use async/await everywhere
