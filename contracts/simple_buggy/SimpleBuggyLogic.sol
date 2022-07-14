@@ -7,6 +7,14 @@ contract SimpleBuggyLogic {
     uint256 public slot0;
     uint256 public someVariable;
 
+    /// @dev This constructor sets data on the Logic contract,
+    /// NOT the Proxy contract, so it's not doing what we want.
+    /// Instead, we need to use an initializer function
+    constructor(uint256 _someVariable, uint256 _slot0) {
+        someVariable = _someVariable;
+        slot0 = _slot0;
+    }
+
     function setVariable(uint256 someArg) external payable {
         console.log("Logic msg.data:");
         console.logBytes(msg.data);

@@ -6,8 +6,9 @@ import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
 contract Logic is Proxiable, OwnableUpgradeable {
     uint256 public someVariable;
+    uint256 public anotherVariable;
 
-    function initialize(uint256 _someVariable)
+    function initialize(uint256 _someVariable, uint256 _anotherVariable)
         external
         initializer // add this so that `initialize` can only be called once
     {
@@ -16,6 +17,7 @@ contract Logic is Proxiable, OwnableUpgradeable {
         __Ownable_init();
 
         someVariable = _someVariable;
+        anotherVariable = _anotherVariable;
     }
 
     /// @notice Used by the Proxy to upgrade itself

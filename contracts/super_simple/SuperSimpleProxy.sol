@@ -37,6 +37,6 @@ contract SuperSimpleProxy {
         if (!success) {
             revert DelegateCallFailed(data);
         }
-        // in this simple example, we don't handle the return data; it is lost :(
+        // in this super simple example, we don't handle the return data; it is lost :(
     }
 }
