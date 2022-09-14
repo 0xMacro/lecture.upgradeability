@@ -1,12 +1,17 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.11;
 
 import "./Proxiable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
 
-contract Logic is Proxiable, OwnableUpgradeable {
+contract ImmutableLogic is Proxiable, OwnableUpgradeable {
     uint256 public someVariable;
     uint256 public anotherVariable;
+    uint256 immutable public foo;
+
+    constructor(uint256 _foo) {
+        foo = _foo;
+    }
 
     function initialize(uint256 _someVariable, uint256 _anotherVariable)
         external
