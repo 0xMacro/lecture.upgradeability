@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.11;
 
 contract SuperSimpleProxy {
 
@@ -14,7 +14,7 @@ contract SuperSimpleProxy {
 
     /// @notice Points this Proxy's logic contract address to a new contract,
     /// allowing the Proxy to upgrade itself
-    function upgrade(address _newLogic) external {
+    function upgrade(address _newLogic) external virtual {
         logicContract = _newLogic;
     }
 

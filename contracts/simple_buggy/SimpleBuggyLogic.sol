@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.11;
 
 import "hardhat/console.sol";
 
@@ -7,10 +7,15 @@ contract SimpleBuggyLogic {
     uint256 public slot0;
     uint256 public someVariable;
 
-    /// @dev This constructor sets data on the Logic contract,
+    /// @dev THIS IS WRONG! This constructor sets data on the Logic contract,
     /// NOT the Proxy contract, so it's not doing what we want.
     /// Instead, we need to use an initializer function
     constructor(uint256 _someVariable, uint256 _slot0) {
+        someVariable = _someVariable;
+        slot0 = _slot0;
+    }
+
+    function initialize(uint256 _someVariable, uint256 _slot0) public {
         someVariable = _someVariable;
         slot0 = _slot0;
     }

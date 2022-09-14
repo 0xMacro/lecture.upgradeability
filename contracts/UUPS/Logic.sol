@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.11;
 
 import "./Proxiable.sol";
 import "@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol";
