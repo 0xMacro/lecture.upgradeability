@@ -22,9 +22,6 @@ contract SuperSimpleProxy {
         delegateTheCall();
     }
 
-    receive() external payable {
-        delegateTheCall();
-    }
 
     /// @dev This is the most important Proxy logic. In it, we forward the function call
     /// (msg.data, which contains the 4 byte function selector as well as the function arguments)
